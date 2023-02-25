@@ -2,6 +2,7 @@ import {
   StyleSheet,
   Text,
   View,
+  ImageBackground,
   KeyboardAvoidingView,
   TouchableWithoutFeedback,
   Keyboard,
@@ -34,108 +35,123 @@ export default function RegisteredScreen({ marginWithDimensions }) {
   return (
     <TouchableWithoutFeedback onPress={keyboardHide}>
       {/* <KeyboardAvoidingView behavior="height"> */}
-      <View
-        style={{ ...styles.whiteBox, paddingBottom: isShowKeyboard ? 0 : 45 }}
+      <ImageBackground
+        style={styles.imgBG}
+        source={require("../assets/bg-mountains.jpg")}
       >
-        <View style={{ ...styles.form, width: marginWithDimensions - 18 * 2 }}>
-          <View style={{ alignItems: "center" }}>
-            <View style={styles.boxPhoto}>
-              <TouchableOpacity style={styles.add} activeOpacity={0.7}>
-                <Image source={require("../assets/add.png")} />
-              </TouchableOpacity>
+        <View
+          style={{ ...styles.whiteBox, paddingBottom: isShowKeyboard ? 0 : 45 }}
+        >
+          <View
+            style={{ ...styles.form, width: marginWithDimensions - 18 * 2 }}
+          >
+            <View style={{ alignItems: "center" }}>
+              <View style={styles.boxPhoto}>
+                <TouchableOpacity style={styles.add} activeOpacity={0.7}>
+                  <Image source={require("../assets/add.png")} />
+                </TouchableOpacity>
+              </View>
             </View>
-          </View>
-          <Text style={styles.title}>Регистрация</Text>
-          <View>
-            <TextInput
-              style={!inFocus.login ? styles.input : styles.focusedInput}
-              placeholder={"Логин"}
-              placeholderTextColor={"#BDBDBD"}
-              value={dataRegister.login}
-              onChangeText={(value) => {
-                setDataRegister((prev) => ({ ...prev, login: value }));
-              }}
-              onFocus={() => {
-                setIsShowKeyboard(true);
-                setInFocus((prev) => ({ ...prev, login: true }));
-              }}
-              onSubmitEditing={() => {
-                setIsShowKeyboard(false);
-              }}
-              onBlur={() => setInFocus((prev) => ({ ...prev, login: false }))}
-            />
-            <TextInput
-              style={!inFocus.email ? styles.input : styles.focusedInput}
-              placeholder={"Адрес электронной почты"}
-              placeholderTextColor={"#BDBDBD"}
-              value={dataRegister.email}
-              onChangeText={(value) => {
-                setDataRegister((prev) => ({ ...prev, email: value }));
-              }}
-              onFocus={() => {
-                setIsShowKeyboard(true);
-                setInFocus((prev) => ({ ...prev, email: true }));
-              }}
-              onSubmitEditing={() => {
-                setIsShowKeyboard(false);
-              }}
-              onBlur={() => setInFocus((prev) => ({ ...prev, email: false }))}
-            />
+            <Text style={styles.title}>Регистрация</Text>
             <View>
               <TextInput
-                style={
-                  !inFocus.password
-                    ? { ...styles.input, position: "relative" }
-                    : { ...styles.focusedInput, position: "relative" }
-                }
-                secureTextEntry={true}
-                placeholder={"Пароль"}
+                style={!inFocus.login ? styles.input : styles.focusedInput}
+                placeholder={"Логин"}
                 placeholderTextColor={"#BDBDBD"}
-                value={dataRegister.password}
+                value={dataRegister.login}
                 onChangeText={(value) => {
-                  setDataRegister((prev) => ({ ...prev, password: value }));
+                  setDataRegister((prev) => ({ ...prev, login: value }));
                 }}
                 onFocus={() => {
                   setIsShowKeyboard(true);
-                  setInFocus((prev) => ({ ...prev, password: true }));
+                  setInFocus((prev) => ({ ...prev, login: true }));
                 }}
                 onSubmitEditing={() => {
                   setIsShowKeyboard(false);
                 }}
-                onBlur={() =>
-                  setInFocus((prev) => ({ ...prev, password: false }))
-                }
+                onBlur={() => setInFocus((prev) => ({ ...prev, login: false }))}
               />
-              <TouchableOpacity style={styles.btnPassword} activeOpacity={0.7}>
-                <Text style={styles.btnBlue}>Показать</Text>
+              <TextInput
+                style={!inFocus.email ? styles.input : styles.focusedInput}
+                placeholder={"Адрес электронной почты"}
+                placeholderTextColor={"#BDBDBD"}
+                value={dataRegister.email}
+                onChangeText={(value) => {
+                  setDataRegister((prev) => ({ ...prev, email: value }));
+                }}
+                onFocus={() => {
+                  setIsShowKeyboard(true);
+                  setInFocus((prev) => ({ ...prev, email: true }));
+                }}
+                onSubmitEditing={() => {
+                  setIsShowKeyboard(false);
+                }}
+                onBlur={() => setInFocus((prev) => ({ ...prev, email: false }))}
+              />
+              <View>
+                <TextInput
+                  style={
+                    !inFocus.password
+                      ? { ...styles.input, position: "relative" }
+                      : { ...styles.focusedInput, position: "relative" }
+                  }
+                  secureTextEntry={true}
+                  placeholder={"Пароль"}
+                  placeholderTextColor={"#BDBDBD"}
+                  value={dataRegister.password}
+                  onChangeText={(value) => {
+                    setDataRegister((prev) => ({ ...prev, password: value }));
+                  }}
+                  onFocus={() => {
+                    setIsShowKeyboard(true);
+                    setInFocus((prev) => ({ ...prev, password: true }));
+                  }}
+                  onSubmitEditing={() => {
+                    setIsShowKeyboard(false);
+                  }}
+                  onBlur={() =>
+                    setInFocus((prev) => ({ ...prev, password: false }))
+                  }
+                />
+                <TouchableOpacity
+                  style={styles.btnPassword}
+                  activeOpacity={0.7}
+                >
+                  <Text style={styles.btnBlue}>Показать</Text>
+                </TouchableOpacity>
+              </View>
+            </View>
+            <TouchableOpacity
+              style={styles.btn}
+              activeOpacity={0.7}
+              onPress={() => {
+                keyboardHide();
+                console.log(dataRegister);
+                setDataRegister(initialState);
+              }}
+            >
+              <Text style={styles.btnTitle}>Зарегестрироваться</Text>
+            </TouchableOpacity>
+            <View style={{ flexDirection: "row", justifyContent: "center" }}>
+              <Text style={styles.btnBlue}>Уже есть аккаунт? </Text>
+              <TouchableOpacity>
+                <Text style={styles.btnBlue}>Войти</Text>
               </TouchableOpacity>
             </View>
           </View>
-          <TouchableOpacity
-            style={styles.btn}
-            activeOpacity={0.7}
-            onPress={() => {
-              keyboardHide();
-              console.log(dataRegister);
-              setDataRegister(initialState);
-            }}
-          >
-            <Text style={styles.btnTitle}>Зарегестрироваться</Text>
-          </TouchableOpacity>
-          <View style={{ flexDirection: "row", justifyContent: "center" }}>
-            <Text style={styles.btnBlue}>Уже есть аккаунт? </Text>
-            <TouchableOpacity>
-              <Text style={styles.btnBlue}>Войти</Text>
-            </TouchableOpacity>
-          </View>
         </View>
-      </View>
+      </ImageBackground>
       {/* </KeyboardAvoidingView> */}
     </TouchableWithoutFeedback>
   );
 }
 
 const styles = StyleSheet.create({
+  imgBG: {
+    flex: 1,
+    resizeMode: "cover",
+    justifyContent: "flex-end",
+  },
   whiteBox: {
     backgroundColor: "#ffffff",
     borderWidth: 1,
@@ -151,7 +167,7 @@ const styles = StyleSheet.create({
   boxPhoto: {
     position: "absolute",
     top: -152,
-    left: 110,
+    left: 100,
     width: 120,
     height: 120,
     backgroundColor: "#F6F6F6",

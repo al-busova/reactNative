@@ -36,13 +36,8 @@ export default function App() {
   return (
  
     <View style={styles.container}>
-      <ImageBackground
-        style={styles.imgBG}
-        source={require("./assets/bg-mountains.jpg")}
-      >
         <RegisteredScreen marginWithDimensions={dimensions} />
         {/* <LoginScreen marginWithDimensions={dimensions}  /> */}
-      </ImageBackground>
       </View>
   );
 }
@@ -51,10 +46,5 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#fff",
-  },
-  imgBG: {
-    flex: 1,
-    resizeMode: "cover",
-    justifyContent: "flex-end",
   },
 });
