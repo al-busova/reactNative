@@ -134,6 +134,7 @@ const styles = StyleSheet.create({
   },
   title: {
     textAlign: "center",
+    fontFamily: "Roboto-Medium",
     fontSize: 30,
     marginBottom: 16,
   },
@@ -144,6 +145,7 @@ const styles = StyleSheet.create({
     height: 50,
     color: "#212121",
     backgroundColor: "#F6F6F6",
+    fontFamily: "Roboto-Regular",
     fontSize: 16,
     padding: 16,
     marginTop: 16,
@@ -155,6 +157,7 @@ const styles = StyleSheet.create({
     height: 50,
     color: "#212121",
     backgroundColor: "#fff",
+    fontFamily: "Roboto-Regular",
     fontSize: 16,
     lineHeight: 19,
     padding: 16,
@@ -172,9 +175,11 @@ const styles = StyleSheet.create({
   },
   btnTitle: {
     color: "#ffffff",
+    fontFamily: "Roboto-Regular",
     fontSize: 16,
   },
   btnBlue: {
+    fontFamily: "Roboto-Regular",
     fontSize: 16,
     lineHeight: 19,
     color: "#1B4371",
