@@ -6,6 +6,7 @@ import {
   TouchableOpacity,
   TouchableWithoutFeedback,
   ImageBackground,
+  KeyboardAvoidingView,
   Keyboard,
   Dimensions,
 } from "react-native";
@@ -74,10 +75,11 @@ export default function LoginScreen({ navigation }) {
           style={styles.imgBG}
           source={require("../assets/bg-mountains.jpg")}
         >
+          <KeyboardAvoidingView behavior="height">
           <View
             style={{
               ...styles.whiteBox,
-              paddingBottom: isShowKeyboard ? 10 : 110,
+              paddingBottom: isShowKeyboard ? 160 : 110,
             }}
           >
             <View style={{ width: dimensions - 18 * 2 }}>
@@ -153,7 +155,8 @@ export default function LoginScreen({ navigation }) {
                 </TouchableOpacity>
               </View>
             </View>
-          </View>
+            </View>
+            </KeyboardAvoidingView>
         </ImageBackground>
       </View>
     </TouchableWithoutFeedback>

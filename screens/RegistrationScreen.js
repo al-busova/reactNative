@@ -5,6 +5,7 @@ import {
   ImageBackground,
   TouchableWithoutFeedback,
   Keyboard,
+  KeyboardAvoidingView,
   TextInput,
   TouchableOpacity,
   Image,
@@ -78,10 +79,11 @@ export default function RegisteredScreen({ navigation }) {
           style={styles.imgBG}
           source={require("../assets/bg-mountains.jpg")}
         >
+           <KeyboardAvoidingView behavior="height">
           <View
             style={{
               ...styles.whiteBox,
-              paddingBottom: isShowKeyboard ? 5 : 45,
+              paddingBottom: isShowKeyboard ? 100 : 45,
             }}
           >
             <View style={{ ...styles.form, width: dimensions - 18 * 2 }}>
@@ -186,7 +188,8 @@ export default function RegisteredScreen({ navigation }) {
                 </TouchableOpacity>
               </View>
             </View>
-          </View>
+            </View>
+            </KeyboardAvoidingView>
         </ImageBackground>
       </View>
     </TouchableWithoutFeedback>
