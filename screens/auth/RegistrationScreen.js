@@ -5,16 +5,12 @@ import {
   ImageBackground,
   TouchableWithoutFeedback,
   Keyboard,
-  KeyboardAvoidingView,
   TextInput,
   TouchableOpacity,
   Image,
   Dimensions,
 } from "react-native";
-import { useState, useEffect, useCallback } from "react";
-import * as Font from "expo-font";
-import * as SplashScreen from "expo-splash-screen";
-SplashScreen.preventAutoHideAsync();
+import { useState, useEffect } from "react";
 
 const initialState = {
   login: "",
@@ -33,23 +29,8 @@ export default function RegisteredScreen({ navigation }) {
   const [dimensions, setDimensions] = useState(
     Dimensions.get("window").width - 18 * 2
   );
-  const [isReady, setIsReady] = useState(false);
 
   useEffect(() => {
-    async function prepare() {
-      try {
-        await Font.loadAsync({
-          "Roboto-Regular": require("../assets/fonts/Roboto-Regular.ttf"),
-          "Roboto-Medium": require("../assets/fonts/Roboto-Medium.ttf"),
-        });
-        await new Promise((resolve) => setTimeout(resolve, 2000));
-      } catch (e) {
-        console.warn(e);
-      } finally {
-        setIsReady(true);
-      }
-    }
-    prepare();
     const onChange = () => {
       const width = Dimensions.get("window").width;
       setDimensions(width);
@@ -57,40 +38,30 @@ export default function RegisteredScreen({ navigation }) {
     Dimensions.addEventListener("change", onChange);
   }, []);
 
-  const onLayoutRootView = useCallback(async () => {
-    if (isReady) {
-      await SplashScreen.hideAsync();
-    }
-  }, [isReady]);
-
-  
   const keyboardHide = () => {
     setIsShowKeyboard(false);
     Keyboard.dismiss();
   };
 
-  if (!isReady) {
-    return null;
-  }
   return (
     <TouchableWithoutFeedback onPress={keyboardHide}>
-      <View style={styles.container} onLayout={onLayoutRootView}>
+      <View style={styles.container}>
         <ImageBackground
           style={styles.imgBG}
-          source={require("../assets/bg-mountains.jpg")}
+          source={require("../../assets/bg-mountains.jpg")}
         >
-           <KeyboardAvoidingView behavior="height">
+           {/* <KeyboardAvoidingView behavior="height"> */}
           <View
             style={{
               ...styles.whiteBox,
-              paddingBottom: isShowKeyboard ? 100 : 45,
+              paddingBottom: isShowKeyboard ? 5 : 45,
             }}
           >
             <View style={{ ...styles.form, width: dimensions - 18 * 2 }}>
               <View style={{ alignItems: "center" }}>
                 <View style={styles.boxPhoto}>
                   <TouchableOpacity style={styles.add} activeOpacity={0.7}>
-                    <Image source={require("../assets/add.png")} />
+                    <Image source={require("../../assets/add.png")} />
                   </TouchableOpacity>
                 </View>
               </View>
@@ -176,6 +147,7 @@ export default function RegisteredScreen({ navigation }) {
                 onPress={() => {
                   keyboardHide();
                   console.log(dataRegister);
+                  // navigation.navigate("Home");
                   setDataRegister(initialState);
                 }}
               >
@@ -189,7 +161,7 @@ export default function RegisteredScreen({ navigation }) {
               </View>
             </View>
             </View>
-            </KeyboardAvoidingView>
+            {/* </KeyboardAvoidingView> */}
         </ImageBackground>
       </View>
     </TouchableWithoutFeedback>

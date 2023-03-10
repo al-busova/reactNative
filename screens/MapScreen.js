@@ -1,7 +1,7 @@
 import { StyleSheet, Text, View, Dimensions } from "react-native";
 import { useState, useEffect } from "react";
 
-export default function PostsScreen() {
+export default function MapScreen() {
   const [dimensions, setDimensions] = useState(
     Dimensions.get("window").width - 18 * 2
   );
@@ -17,7 +17,7 @@ export default function PostsScreen() {
   return (
     <View style={styles.container}>
       <View>
-        <Text>PostsScreen</Text>
+        <Text>MapScreen</Text>
       </View>
     </View>
   );

@@ -2,12 +2,13 @@ import {
   StyleSheet,
   Text,
   View,
-  ImageBackground,
+  TouchableWithoutFeedback,
+  Keyboard,
   Dimensions,
 } from "react-native";
 import { useState, useEffect } from "react";
 
-export default function ProfileScreen() {
+export default function CrommentsScreen() {
   const [dimensions, setDimensions] = useState(
     Dimensions.get("window").width - 18 * 2
   );
@@ -20,17 +21,21 @@ export default function ProfileScreen() {
     Dimensions.addEventListener("change", onChange);
   }, []);
 
+  const keyboardHide = () => {
+    setIsShowKeyboard(false);
+    Keyboard.dismiss();
+  };
+
   return (
-    <View style={styles.container}>
-      <ImageBackground
-        style={styles.imgBG}
-        source={require("../../assets/bg-mountains.jpg")}
-      >
-        <View>
-          <Text>ProfileScreen</Text>
-        </View>
-      </ImageBackground>
-    </View>
+    <TouchableWithoutFeedback onPress={keyboardHide}>
+      <View style={styles.container}>
+          {/* <KeyboardAvoidingView behavior="height"> */}
+            <View>
+              <Text>CommentsScreen</Text>
+            </View>
+          {/* </KeyboardAvoidingView> */}
+      </View>
+    </TouchableWithoutFeedback>
   );
 }
 
@@ -38,10 +43,5 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#fff",
-  },
-  imgBG: {
-    flex: 1,
-    resizeMode: "cover",
-    justifyContent: "flex-end",
   },
 });
